@@ -24,9 +24,18 @@ function cleanUpIndex() {
     }
 }
 
+function checkcontact(string) {
+    contactplace = contactList.findIndex(x => x.name === string);
+    if (contactplace != -1) {
+        cleanUpIndex()
+        renderView(contactList[contactplace])
+        
+    }
+
+}
 
 function createSingleIndex(contactList) {
-    let index = `<a href="page3.html"><div class="contact"><p> ${contactList.name} </p></div></a>`
+    let index = `<a> <div class="contact"><p>${contactList.name}</p></div></a>`
 	return index
 }
 
@@ -67,9 +76,7 @@ return main
 
 function renderView(Lists) {
 	let viewmain = document.querySelector('.main')
-	for (x in Lists) {
-        viewmain.insertAdjacentHTML('beforeend', createSingleView(Lists[x]))
-    }
+        viewmain.insertAdjacentHTML('beforeend', createSingleView(Lists))
 }
 
 function cleanUpCreate(){
@@ -124,3 +131,29 @@ function renderCreate(contactList) {
 	let create = document.querySelector('.main')
         create.insertAdjacentHTML('beforeend', createcreate())
 }
+
+ 
+const contacthome = document.querySelector('.nav-home')
+
+contacthome.addEventListener("click", (evt) => {
+    evt.preventDefault()
+    cleanUpIndex()
+    renderindex(contactList)
+
+  })
+
+
+const CreateNav = document.querySelector('.nav')
+
+CreateNav.addEventListener("click", (evt) => {
+    evt.preventDefault()
+    cleanUpIndex()
+    renderCreate(contactList)
+})
+
+
+const contactname = document.querySelector('.contact')
+
+document.addEventListener("click", (evt) => {
+    checkcontact(evt.target.innerHTML)
+})

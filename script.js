@@ -43,6 +43,12 @@ function renderindex(contactLists) {
     let main = document.querySelector('.main')
     for (x in contactList) {
         main.insertAdjacentHTML('beforeend', createSingleIndex(contactList[x]))
+    document.querySelectorAll('.contact').forEach(item => {
+            item.addEventListener('click', evt => {
+                evt.preventDefault() 
+                checkcontact(evt.target.innerHTML)
+                })            
+    })
     }
 }
 
@@ -77,6 +83,13 @@ return main
 function renderView(Lists) {
 	let viewmain = document.querySelector('.main')
         viewmain.insertAdjacentHTML('beforeend', createSingleView(Lists))
+
+    var CloseButton = document.querySelector('.close')
+    CloseButton.addEventListener("click", (evt) => {
+        evt.preventDefault()
+        cleanUpIndex()
+        renderindex(contactList)
+})
 }
 
 function cleanUpCreate(){
@@ -130,6 +143,13 @@ return main
 function renderCreate(contactList) {
 	let create = document.querySelector('.main')
         create.insertAdjacentHTML('beforeend', createcreate())
+
+    var CancelButton = document.querySelector('.cancel')
+    CancelButton.addEventListener("click", (evt) => {
+        evt.preventDefault()
+        cleanUpIndex()
+        renderindex(contactList)
+    })
 }
 
  
@@ -151,10 +171,4 @@ CreateNav.addEventListener("click", (evt) => {
     renderCreate(contactList)
 })
 
-
-var NameContact = document.querySelector(".main")
-
-NameContact.addEventListener("click", (evt) => {
-    evt.preventDefault() 
-    checkcontact(evt.target.innerHTML)
-})
+renderindex(contactList)

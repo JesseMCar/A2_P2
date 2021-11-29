@@ -35,7 +35,7 @@ function checkcontact(string) {
 }
 
 function createSingleIndex(contactList) {
-    let index = `<a> <div class="contact"><p>${contactList.name}</p></div></a>`
+    let index = ` <a><div class="contact"><p>${contactList.name}</p></div></a>`
 	return index
 }
 
@@ -152,8 +152,9 @@ CreateNav.addEventListener("click", (evt) => {
 })
 
 
-const contactname = document.querySelector('.contact')
+var NameContact = document.querySelector(".main")
 
-document.addEventListener("click", (evt) => {
+NameContact.addEventListener("click", (evt) => {
+    evt.preventDefault() 
     checkcontact(evt.target.innerHTML)
 })

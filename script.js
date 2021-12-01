@@ -89,7 +89,7 @@ function renderView(Lists) {
         evt.preventDefault()
         cleanUpIndex()
         renderindex(contactList)
-})
+    })
 }
 
 function cleanUpCreate(){
@@ -149,6 +149,22 @@ function renderCreate(contactList) {
         evt.preventDefault()
         cleanUpIndex()
         renderindex(contactList)
+    })
+    var SaveButton = document.querySelector(".save")
+    SaveButton.addEventListener("click", (evt) => {
+        namecontact = document.getElementsByName('contactname')[0].value
+        phone = document.getElementsByName('contactphone')[0].value
+        address = document.getElementsByName('contactaddress')[0].value    
+        email = document.getElementsByName('contactemail')[0].value
+        NewContact = {
+            name: namecontact,
+            phone: phone,
+            address: address,     
+            email: email
+        }
+        contactList.push(NewContact)
+        checkcontact(namecontact)
+        evt.preventDefault()
     })
 }
 
